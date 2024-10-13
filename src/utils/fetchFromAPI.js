@@ -60,7 +60,9 @@ axiosInstance.interceptors.response.use(
       } catch (error) {
         console.log('Extend token failed',error)
       }
-    };
+    }
+    return Promise.reject(error);
+
   } // param khác trả về 2x
 )
 
@@ -88,14 +90,14 @@ export const getListVideoType = async(typeid)=>{
     return data;
 }
 
-export const registerApi= async(pageload)=>{
-  const{data} = await axiosInstance.post(`${BASE_URL}/auth/register`,pageload);
+export const registerApi= async(payload)=>{
+  const{data} = await axiosInstance.post(`${BASE_URL}/auth/register`,payload);
   return data;
 }
 
 
-export const loginAPI = async(pageload)=>{
-  const {data} = await axiosInstance.post(`${BASE_URL}/auth/login`,pageload,{
+export const loginAPI = async(payload)=>{
+  const {data} = await axiosInstance.post(`${BASE_URL}/auth/login`,payload,{
     withCredentials:true //cho phep gui va nhan cookie tu BE
   });
   return data;
@@ -114,5 +116,10 @@ export const loginFacebookAPI = async (newUser) =>{
 
 export const forgotPassAPI = async (email) =>{
   const{data} = await axiosInstance.post(`${BASE_URL}/auth/forgot-password`,email);
+  return data;
+}
+export const changePassAPI = async (payload) =>{
+  // payload: {email,newPass,code}
+  const {data} = await axiosInstance.post(`${BASE_URL}/auth/change-password`,payload);
   return data;
 }
