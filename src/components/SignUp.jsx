@@ -15,6 +15,7 @@ const SignUp = () => {
   useEffect(() => { }, []);
   const handleQrScanConfirmation = () => {
     setIsQrScanned(true);
+    navigate("/login");
   }
   const navigate = useNavigate();
   const handleRegister = () => {

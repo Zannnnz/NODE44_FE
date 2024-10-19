@@ -30,13 +30,18 @@ const Login = () => {
           <label htmlFor="inputEmail4" className="form-label">Password</label>
           <input className="form-control" id="pass" />
         </div>
+        <div className="col-md-12">
+          <label htmlFor="inputEmail4" className="form-label">Code</label>
+          <input className="form-control" id="code" />
+        </div>
         <div className="col-12">
           <button type="button" className="btn btn-primary"
           onClick={()=>{
             let email = document.getElementById("email").value;
             let pass_word = document.getElementById("pass").value;
+            let code = document.getElementById("code").value;
             console.log(`email:${email}; pass_word: ${pass_word}`);
-            loginAsyncKeyAPI({email,pass_word})
+            loginAsyncKeyAPI({email,pass_word,code})
             .then((result)=>{
 
               //result gồm message và data
